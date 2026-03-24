@@ -24,9 +24,10 @@ for i in range(len(images) - 1):
     # the maximum value of any element in diff is 765 (255 * 3)
     diff = np.sum(np.abs(img1.astype(int) - img2.astype(int)), axis=2)
 
-    # still a 2d array, same size as diff, but with only 2 possible values (0, 1)
+    # still a 2d array, same size as diff, but with only 2 possible values (0, 255)
     # compare each value of diff to the THRESHOLD defined above.
-    # if less than: 0 (black) else: 1 (white)
+    # if less than: 0 (black) else: 255 (white)
+    # (default of np.where is boolean - 0 or 1. the second and third arguments overwrite these defaults, in this case to 0 or 255.
     out = np.where(diff >= THRESHOLD, 255, 0).astype(np.uint8)
 
     # save this new image, as defined by the array out
